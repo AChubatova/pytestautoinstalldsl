@@ -24,13 +24,17 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2020.2"
+version = "2021.1"
 
 project {
 
     vcsRoot(HttpsGithubComAChubatovaIntroToPytest)
 
     buildType(Buildpytest)
+
+    params {
+        param("a", "a")
+    }
 }
 
 object Buildpytest : BuildType({
@@ -43,6 +47,7 @@ object Buildpytest : BuildType({
     steps {
         python {
             command = pytest {
+                installToolPackage = false
             }
         }
     }
@@ -52,4 +57,5 @@ object HttpsGithubComAChubatovaIntroToPytest : GitVcsRoot({
     name = "https://github.com/AChubatova/intro-to-pytest"
     url = "https://github.com/AChubatova/intro-to-pytest"
     branch = "refs/heads/master"
+    param("useAlternates", "true")
 })
